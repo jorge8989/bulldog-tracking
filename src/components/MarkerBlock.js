@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './MarkerBlock.css';
+import { Link } from 'react-router-dom';
 
 export default class MarkerBlock extends Component {
   handleDeleteClick() {
@@ -28,9 +29,9 @@ export default class MarkerBlock extends Component {
       </div>
         <button className="btn btn-secondary btn-sm">
           ver en mapa</button>
-        <button className="btn btn-info btn-sm">
-          edit
-        </button>
+          <Link to={`markers/${marker.id}/edit`} className="btn btn-info btn-sm">
+            edit
+          </Link>
         <button
           className="btn btn-danger btn-sm"
           onClick={() => this.handleDeleteClick()}
