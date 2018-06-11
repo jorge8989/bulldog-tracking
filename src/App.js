@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import MarkerBlock from './components/MarkerBlock';
 import * as firebase from 'firebase';
 
 const config = {
@@ -26,6 +27,12 @@ class App extends Component {
       markers: newMarkers,
     });
   }
+
+  markerBlocks() {
+    return this.state.markers.map((marker) => {
+      return <MarkerBlock key={marker.id} marker={marker} />
+    });
+  }
   componentDidMount() {
     console.log('didmount');
     const appComponent = this;
@@ -38,7 +45,9 @@ class App extends Component {
     this.markersCollection.onSnapshot(function(querySnapshot) {
       const markers = [];
       querySnapshot.forEach(function(doc) {
-        markers.push(doc.data());
+        const markerData = doc.data();
+        markerData.id = doc.id;
+        markers.push(markerData);
       });
       appComponent.setMarkers(markers);
     });
@@ -47,7 +56,10 @@ class App extends Component {
   render() {
     console.log(this.state.markers.length);
     return (
-      <h1>Bulldog tracking</h1>
+      <div className="container-fluid">
+        <h1>Bulldog tracking</h1>
+        {this.state.markers.length > 0 ? this.markerBlocks() : null}
+      </div>
     );
   }
 }
