@@ -3,8 +3,14 @@ import PropTypes from 'prop-types';
 import './MarkerBlock.css';
 
 export default class MarkerBlock extends Component {
+  handleDeleteClick() {
+    const deleteConfirmation = window.confirm('Estás seguro ?');
+    if (deleteConfirmation) {
+      this.props.deleteMarker();
+    }
+  }
   render() {
-    const { marker } = this.props;
+    const { marker, deleteMarker } = this.props;
     const photoSrc = 'https://bulldog-c60eb.firebaseapp.com/' + (!!marker.photoUrl ? marker.photoUrl : '/assets/images/profile_pic.png');
     return (
       <div>
@@ -25,7 +31,10 @@ export default class MarkerBlock extends Component {
         <button className="btn btn-info btn-sm">
           edit
         </button>
-        <button className="btn btn-danger btn-sm">
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={() => this.handleDeleteClick()}
+        >
           delete
         </button>
       </div>
@@ -35,4 +44,5 @@ export default class MarkerBlock extends Component {
 
 MarkerBlock.propTypes = {
   marker: PropTypes.object.isRequired,
+  deleteMarker: PropTypes.func.isRequired,
 };

@@ -20,6 +20,7 @@ class App extends Component {
       markers: [],
     };
     this.setMarkers = this.setMarkers.bind(this);
+    this.deleteMarker = this.deleteMarker.bind(this);
   }
 
   setMarkers(newMarkers) {
@@ -29,12 +30,21 @@ class App extends Component {
   }
 
   markerBlocks() {
+    const deleteMarker = this.deleteMarker;
     return this.state.markers.map((marker) => {
-      return <MarkerBlock key={marker.id} marker={marker} />
+      return <MarkerBlock
+        key={marker.id}
+        marker={marker}
+        deleteMarker={() => deleteMarker(marker.id)}
+      />
     });
   }
+
+  deleteMarker(markerId) {
+    const marker = this.markersCollection.doc(markerId);
+    marker.delete();
+  }
   componentDidMount() {
-    console.log('didmount');
     const appComponent = this;
     this.firebaseApp = firebase.app();
     const db = firebase.firestore();
@@ -54,7 +64,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.markers.length);
     return (
       <div className="container-fluid">
         <h1>Bulldog tracking</h1>
