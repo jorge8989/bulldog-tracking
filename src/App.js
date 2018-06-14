@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { Route } from "react-router-dom";
 import HomeComponent from './components/HomeComponent/HomeComponent';
 import EditMarkerComponent from './components/EditMarkerComponent/EditMarkerComponent';
+import NewMarkerComponent from './components/NewMarkerComponent/NewMarkerComponent';
 
 const config = {
   apiKey: "AIzaSyDpLWFgdnn_-3Txc5YWqKaA52PAKovCF2g",
@@ -21,6 +22,7 @@ class App extends Component {
       <div className="container-fluid">
         <Route exact path="/" component={HomeComponent} />
         <Route path="/markers/:markerId/edit" component={EditMarkerComponent} />
+        <Route path="/markers/new" component={NewMarkerComponent} />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './HomeComponent.css';
 import MarkerBlock from './../MarkerBlock';
 import * as firebase from 'firebase';
@@ -57,6 +58,11 @@ class HomeComponent extends Component {
     return (
       <div className="container-fluid">
         <h1>Bulldog tracking</h1>
+        <div>
+        <Link to={'markers/new'} className="btn btn-default btn-sm">
+          Añadir marcador
+        </Link>
+        </div>
         {this.state.markers.length > 0 ? this.markerBlocks() : null}
       </div>
     );
