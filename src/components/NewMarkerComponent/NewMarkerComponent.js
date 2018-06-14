@@ -6,7 +6,6 @@ import * as firebase from 'firebase';
 export default class NewMarkerComponent extends Component {
   constructor(props) {
     super(props);
-    this.form = React.createRef();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.state = {
@@ -58,7 +57,6 @@ export default class NewMarkerComponent extends Component {
           <h2>Nuevo marcador</h2>
           <form
             onSubmit={(e) => this.handleFormSubmit(e)}
-            ref={this.form}
           >
             <div className="form-group">
               <label>Nombre</label>
