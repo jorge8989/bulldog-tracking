@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router';
+import { BrowserRouter as Router } from 'react-router';
 import * as firebase from 'firebase';
 
 export default class EditMarkerComponent extends Component {
@@ -26,7 +26,7 @@ export default class EditMarkerComponent extends Component {
     const settings = {timestampsInSnapshots: true};
     db.settings(settings);
     this.markersCollection = db.collection('markers');
-    
+
     this.markerDoc = this.markersCollection.doc(this.markerId);
     this.markerDoc.get().then(function(doc) {
       if (doc.exists) {
@@ -45,7 +45,7 @@ export default class EditMarkerComponent extends Component {
       }
     })
   }
-  
+
   handleFormSubmit(e) {
     e.preventDefault();
     this.setState({

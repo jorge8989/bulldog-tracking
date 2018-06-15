@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import MarkerBlock from './components/MarkerBlock';
+import React, { Component, Fragment } from 'react';
 import * as firebase from 'firebase';
 import { Route } from "react-router-dom";
 import HomeComponent from './components/HomeComponent/HomeComponent';
@@ -19,11 +18,11 @@ firebase.initializeApp(config);
 class App extends Component {
   render() {
     return (
-      <div className="container-fluid">
+      <Fragment>
         <Route exact path="/" component={HomeComponent} />
         <Route path="/markers/:markerId/edit" component={EditMarkerComponent} />
         <Route path="/markers/new" component={NewMarkerComponent} />
-      </div>
+      </Fragment>
     );
   }
 }

@@ -11,14 +11,14 @@ export default class MarkerBlock extends Component {
     }
   }
   render() {
-    const { marker, deleteMarker } = this.props;
+    const { marker } = this.props;
     const photoSrc = 'https://bulldog-c60eb.firebaseapp.com/' + (!!marker.photoUrl ? marker.photoUrl : '/assets/images/profile_pic.png');
     return (
-      <div>
-      <div className="marker-block">
-        <div className="marker-left-block">
-          <img src={photoSrc} className="marker-thumbnail"/>
-        </div>
+      <div className="marker-block-container">
+        <div className="marker-block">
+          <div className="marker-left-block">
+            <img src={photoSrc} className="marker-thumbnail"/>
+          </div>
         <div className="marker-right-block">
           <p>
             <strong>{marker.name}</strong><br />

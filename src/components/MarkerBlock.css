@@ -1,5 +1,14 @@
 .marker-thumbnail {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+  .marker-block-container {
+    padding: 10px 15px;
+    width: 100%;
   }
+
+.marker-block-container:hover {
+  background-color: #f4f6f8;
+}

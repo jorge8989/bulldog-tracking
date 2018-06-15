@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router';
+import { BrowserRouter as Router } from 'react-router';
 import * as firebase from 'firebase';
 
 export default class NewMarkerComponent extends Component {
@@ -23,7 +23,7 @@ export default class NewMarkerComponent extends Component {
     db.settings(settings);
     this.markersCollection = db.collection('markers');
   }
-  
+
   handleFormSubmit(e) {
     e.preventDefault();
     this.setState({
