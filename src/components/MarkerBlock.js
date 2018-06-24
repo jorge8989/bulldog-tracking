@@ -27,7 +27,7 @@ export default class MarkerBlock extends Component {
             {marker.description}
           </p>
           <a href={marker.phone} className="phone-link">
-            <FontAwesomeIcon icon={faPhone} />{marker.phone}
+            <FontAwesomeIcon icon={faPhone} /> {marker.phone}
           </a>
         </div>
         <div className="col-md-12">

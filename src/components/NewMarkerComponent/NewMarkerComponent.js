@@ -51,38 +51,40 @@ export default class NewMarkerComponent extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-6">
-          <br />
-          <h2>Nuevo marcador</h2>
-          <form
-            onSubmit={(e) => this.handleFormSubmit(e)}
-          >
-            <div className="form-group">
-              <label>Nombre</label>
-              <input type="text" name="name" className="form-control"
-                onChange={this.handleInputChange} required="true" />
-            </div>
-            <div className="form-group">
-              <label>Descripción</label>
-              <input type="text" name="description" className="form-control"
-                onChange={this.handleInputChange} required="true"/>
-            </div>
-            <div className="form-group">
-              <label>Teléfono</label>
-              <input type="number" name="phone" className="form-control"
-                onChange={this.handleInputChange} required="true"/>
-            </div>
-            <div className="form-group">
-              <input
-                type="submit" value="Guardar" className="btn btn-primary"
-                disabled={this.state.processingForm}
-              />
-            </div>
-          </form>
-          <Link to={'/'} className="btn btn-default" disabled={this.state.processingForm}>
-            Volver
-          </Link>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <br />
+            <h2>Nuevo marcador</h2>
+            <form
+              onSubmit={(e) => this.handleFormSubmit(e)}
+            >
+              <div className="form-group">
+                <label>Nombre</label>
+                <input type="text" name="name" className="form-control"
+                  onChange={this.handleInputChange} required="true" />
+              </div>
+              <div className="form-group">
+                <label>Descripción</label>
+                <input type="text" name="description" className="form-control"
+                  onChange={this.handleInputChange} required="true"/>
+              </div>
+              <div className="form-group">
+                <label>Teléfono</label>
+                <input type="number" name="phone" className="form-control"
+                  onChange={this.handleInputChange} required="true"/>
+              </div>
+              <div className="form-group">
+                <input
+                  type="submit" value="Guardar" className="btn btn-primary"
+                  disabled={this.state.processingForm}
+                />
+              </div>
+            </form>
+            <Link to={'/'} className="btn btn-outline-secondary" disabled={this.state.processingForm}>
+              Volver
+            </Link>
+          </div>
         </div>
       </div>
     );
