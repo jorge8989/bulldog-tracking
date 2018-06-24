@@ -64,6 +64,9 @@ class HomeComponent extends Component {
   }
 
   render() {
+    const googleMarkers = this.state.markers.map((m) => {
+      return <Marker key={m.id} position={{ lat: m.latitude, lng: m.longitude }} />;
+    });
     const MyMapComponent = compose(
       withProps({
         googleMapURL:
@@ -76,6 +79,7 @@ class HomeComponent extends Component {
       withGoogleMap
     )(props => (
       <GoogleMap defaultZoom={14} defaultCenter={{ lat: -17.7856156, lng: -63.1791842 }}>
+        {googleMarkers}
       </GoogleMap>
     ));
 
