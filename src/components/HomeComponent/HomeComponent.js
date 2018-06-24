@@ -4,13 +4,13 @@ import './HomeComponent.css';
 import { compose, withProps } from "recompose";
 import MarkerBlock from './../MarkerBlock';
 import NavBarComponent from './../NavBarComponent/NavBarComponent';
+import GoogleMarkerComponent from './../GoogleMarkerComponent/GoogleMarkerComponent';
 
 import * as firebase from 'firebase';
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
 } from "react-google-maps";
 
 class HomeComponent extends Component {
@@ -65,7 +65,7 @@ class HomeComponent extends Component {
 
   render() {
     const googleMarkers = this.state.markers.map((m) => {
-      return <Marker key={m.id} position={{ lat: m.latitude, lng: m.longitude }} />;
+      return <GoogleMarkerComponent key={m.id} marker={m} />
     });
     const MyMapComponent = compose(
       withProps({
