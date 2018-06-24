@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './HomeComponent.css';
 import { compose, withProps } from "recompose";
 import MarkerBlock from './../MarkerBlock';
+import NavBarComponent from './../NavBarComponent/NavBarComponent';
 
 import * as firebase from 'firebase';
 import {
@@ -79,21 +80,19 @@ class HomeComponent extends Component {
     ));
 
     return (
-      <div className="container-fluid h-100">
-        <div className="row h-100">
-          <div className="col-md-3 markers-column">
-            <div>
-              <Link to={'markers/new'} className="btn btn-outline-secondary btn-sm add-marker-btn">
-                Añadir marcador
-              </Link>
+      <React.Fragment>
+        <NavBarComponent />
+        <div className="container-fluid h-100 main-container">
+          <div className="row h-100 main-row">
+            <div className="col-md-3 markers-column">
+              {this.state.markers.length > 0 ? this.markerBlocks() : null}
             </div>
-            {this.state.markers.length > 0 ? this.markerBlocks() : null}
-          </div>
-          <div className="col-md-9 map-column">
-            <MyMapComponent key="map" />
+            <div className="col-md-9 map-column">
+              <MyMapComponent key="map" />
+            </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

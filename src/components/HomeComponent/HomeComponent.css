@@ -3,10 +3,24 @@ body, html {
   width: 100%;
 }
 
+.row.main-row {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 56px;
+}
+
 .col-md-3.markers-column {
   padding: 0;
 }
 
 .col-md-9.map-column {
   padding: 0;
+}
+
+.container-fluid.main-container {
+  position: absolute;
+  left: 0;
+  right: 0;
 }

@@ -17,11 +17,11 @@ export default class MarkerBlock extends Component {
     const photoSrc = 'https://bulldog-c60eb.firebaseapp.com/' + (!!marker.photoUrl ? marker.photoUrl : '/assets/images/profile_pic.png');
     return (
       <div className="marker-block-container">
-        <div className="marker-block">
-          <div className="marker-left-block">
+        <div className="row">
+          <div className="col-md-6">
             <img src={photoSrc} className="marker-thumbnail"/>
           </div>
-        <div className="marker-right-block">
+        <div className="col-md-6">
           <p>
             <strong>{marker.name}</strong><br />
             {marker.description}
@@ -30,19 +30,21 @@ export default class MarkerBlock extends Component {
             <FontAwesomeIcon icon={faPhone} />{marker.phone}
           </a>
         </div>
+        <div className="col-md-12">
+          <button className="btn btn-secondary btn-sm">
+            <FontAwesomeIcon icon={faMapMarkerAlt} />
+          </button>
+          <Link to={`markers/${marker.id}/edit`} className="btn btn-info btn-sm">
+            <FontAwesomeIcon icon={faEdit} />
+          </Link>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => this.handleDeleteClick()}
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        </div>
       </div>
-        <button className="btn btn-secondary btn-sm">
-          <FontAwesomeIcon icon={faMapMarkerAlt} />
-        </button>
-        <Link to={`markers/${marker.id}/edit`} className="btn btn-info btn-sm">
-          <FontAwesomeIcon icon={faEdit} />
-        </Link>
-        <button
-          className="btn btn-danger btn-sm"
-          onClick={() => this.handleDeleteClick()}
-        >
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
       </div>
     );
   }
