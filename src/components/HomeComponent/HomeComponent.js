@@ -19,8 +19,10 @@ class HomeComponent extends Component {
     this.state = {
       markers: [],
     };
+    this.googleMap;
     this.setMarkers = this.setMarkers.bind(this);
     this.deleteMarker = this.deleteMarker.bind(this);
+    this.moveMapToMarker = this.moveMapToMarker.bind(this);
   }
 
   setMarkers(newMarkers) {
@@ -31,10 +33,12 @@ class HomeComponent extends Component {
 
   markerBlocks() {
     const deleteMarker = this.deleteMarker;
+    const moveMapToMarker = this.moveMapToMarker;
     return this.state.markers.map((marker) => {
       return <MarkerBlock
         key={marker.id}
         marker={marker}
+        moveMapToMarker={() => moveMapToMarker([marker.latitude, marker.longitude])}
         deleteMarker={() => deleteMarker(marker.id)}
       />
     });
@@ -43,6 +47,9 @@ class HomeComponent extends Component {
   deleteMarker(markerId) {
     const marker = this.markersCollection.doc(markerId);
     marker.delete();
+  }
+  moveMapToMarker(coords) {
+    this.googleMap.panTo({lat: coords[0], lng: coords[1]});
   }
   componentDidMount() {
     const appComponent = this;
@@ -64,6 +71,8 @@ class HomeComponent extends Component {
   }
 
   render() {
+    const self = this;
+    const { mapCenter } = this.state;
     const googleMarkers = this.state.markers.map((m) => {
       return <GoogleMarkerComponent key={m.id} marker={m} />
     });
@@ -78,7 +87,7 @@ class HomeComponent extends Component {
       withScriptjs,
       withGoogleMap
     )(props => (
-      <GoogleMap defaultZoom={14} defaultCenter={{ lat: -17.7856156, lng: -63.1791842 }}>
+      <GoogleMap defaultZoom={14} defaultCenter={{ lat: -17.7856156, lng: -63.1791842 }} ref={(r) => {self.googleMap = r}}>
         {googleMarkers}
       </GoogleMap>
     ));

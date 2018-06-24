@@ -31,15 +31,18 @@ export default class MarkerBlock extends Component {
           </a>
         </div>
         <div className="col-md-12">
-          <button className="btn btn-secondary btn-sm">
+          <button onClick={() => this.props.moveMapToMarker()}
+            className="btn btn-secondary btn-sm" title="ver en el mapa">
             <FontAwesomeIcon icon={faMapMarkerAlt} />
           </button>
-          <Link to={`markers/${marker.id}/edit`} className="btn btn-info btn-sm">
+          <Link to={`markers/${marker.id}/edit`} className="btn btn-info btn-sm"
+            title="editar marcador">
             <FontAwesomeIcon icon={faEdit} />
           </Link>
           <button
             className="btn btn-danger btn-sm"
             onClick={() => this.handleDeleteClick()}
+            title="eliminar marcador"
           >
             <FontAwesomeIcon icon={faTrash} />
           </button>
@@ -53,4 +56,5 @@ export default class MarkerBlock extends Component {
 MarkerBlock.propTypes = {
   marker: PropTypes.object.isRequired,
   deleteMarker: PropTypes.func.isRequired,
+  moveMapToMarker: PropTypes.func.isRequired,
 };
