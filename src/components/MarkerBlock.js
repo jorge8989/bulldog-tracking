@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './MarkerBlock.css';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons'
 
 export default class MarkerBlock extends Component {
   handleDeleteClick() {
@@ -24,19 +26,22 @@ export default class MarkerBlock extends Component {
             <strong>{marker.name}</strong><br />
             {marker.description}
           </p>
-          <a href={marker.phone} className="phone-link">{marker.phone}</a>
+          <a href={marker.phone} className="phone-link">
+            <FontAwesomeIcon icon={faPhone} />{marker.phone}
+          </a>
         </div>
       </div>
         <button className="btn btn-secondary btn-sm">
-          ver en mapa</button>
-          <Link to={`markers/${marker.id}/edit`} className="btn btn-info btn-sm">
-            edit
-          </Link>
+          <FontAwesomeIcon icon={faMapMarkerAlt} />
+        </button>
+        <Link to={`markers/${marker.id}/edit`} className="btn btn-info btn-sm">
+          <FontAwesomeIcon icon={faEdit} />
+        </Link>
         <button
           className="btn btn-danger btn-sm"
           onClick={() => this.handleDeleteClick()}
         >
-          delete
+          <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
     );

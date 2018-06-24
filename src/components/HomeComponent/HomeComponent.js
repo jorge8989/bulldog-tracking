@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './HomeComponent.css';
 import { compose, withProps } from "recompose";
 import MarkerBlock from './../MarkerBlock';
+
 import * as firebase from 'firebase';
 import {
   withScriptjs,
