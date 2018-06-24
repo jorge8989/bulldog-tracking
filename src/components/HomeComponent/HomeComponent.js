@@ -73,7 +73,10 @@ class HomeComponent extends Component {
   render() {
     const self = this;
     const { mapCenter } = this.state;
-    const googleMarkers = this.state.markers.map((m) => {
+    const posisionatedMarkers = this.state.markers.filter((m) => {
+      return !!m.latitude && !!m.longitude;
+    });
+    const googleMarkers = posisionatedMarkers.map((m) => {
       return <GoogleMarkerComponent key={m.id} marker={m} />
     });
     const MyMapComponent = compose(

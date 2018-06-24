@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router';
+import './../MarkerBlock.css';
+import MarkerAvatarUploader from './../MarkerAvatarUploader/MarkerAvatarUploader';
 import * as firebase from 'firebase';
 
 export default class EditMarkerComponent extends Component {
@@ -9,6 +11,7 @@ export default class EditMarkerComponent extends Component {
     this.form = React.createRef();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.updateProfileUrl = this.updateProfileUrl.bind(this);
     this.state = {
       name: '',
       description: '',
@@ -61,6 +64,15 @@ export default class EditMarkerComponent extends Component {
     });
   }
 
+  updateProfileUrl(newPhotoUrl) {
+    const data = {
+      photoUrl: newPhotoUrl,
+    };
+    this.markerDoc.update(data).then(() => {
+      console.log('photo updated');
+    });
+  }
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -77,6 +89,7 @@ export default class EditMarkerComponent extends Component {
           <div className="col-md-6">
             <br />
             <h2>Editar marcador</h2>
+            <MarkerAvatarUploader markerId={this.props.match.params.markerId} onUploadComplete={this.updateProfileUrl}/>
             <form onSubmit={(e) => this.handleFormSubmit(e)}>
               <div className="form-group">
                 <label>Nombre</label>
@@ -111,6 +124,7 @@ export default class EditMarkerComponent extends Component {
             <Link to={'/'} className="btn btn-outline-secondary">
               Volver
             </Link>
+            <br /><br />
           </div>
         </div>
       </div>
